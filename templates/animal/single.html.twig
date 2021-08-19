@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Animal
+{% endblock %}
+
+{% block body %}
+	<div class="container p-5 mt-2" style="width: 40rem;">
+		<div class="card ">
+			<img class="card-img-top" src={{ asset('img/cars/' ~ animal.path) }} alt={{ animal.name }}>
+
+			<div class="card-body">
+				<h5 class="card-title">
+					{{ animal.name }}
+				</h5>
+				<div class="card-text">Année :
+					{{ animal.age }}</div>
+				<div class="card-text">
+					Prix :
+					{{ animal.price }}
+					/ jour
+				</div>
+				<div class="card-text">
+					Poids :
+					{{ animal.weight }}
+					kg
+				</div>
+
+				<div class="mt-4">
+					<a class="btn btn-light" href="{{ path('cars') }}" class="btn btn-light">Retour</a>
+					{% if animal.adopt is empty %}
+						<a href={{ path('car_rent', { id: animal.id } ) }} class="btn btn-success">Louer</a>
+					{% endif %}
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {{ form_start(form) }}
+                    <div class="row justify-content-center m-4">
+                        <div class="col-auto">
+                            {{ form_widget(form.search_text) }}
+                        </div>
+                        <div class="col-auto">
+                            {{ form_row(form.submit) }}
+                        </div>
+                        <div class="col-auto">
+                            <a class="btn btn-secondary" href="{{ path('product') }}">Réinitialiser</a>
+                        </div>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {% for product in products %}
+                    <div class="row justify-content-center m-4">
+                        <div class="col-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row justify-content-between">
+                                        <div class="col-8">
+                                            <h5 class="card-title">
+                                                {{ product.title }}
+                                            </h5>
+                                            <p class="card-text">{{ product.price }}€</p>
+                                            {% if product.quantity > 0 %}
+                                                <p class="card-text fw-bold text-success">En stock</p>
+                                            {% else %}
+                                                <p class="card-text fw-bold text-danger">En rupture de stock</p>
+                                            {% endif %}                                            
+                                            <div class="row">
+                                                <div class="col">
+                                                    <a href="{{path('show_product', {'id':  product.id} ) }}" class="btn btn-primary">Description</a>                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <img style="max-width : 15em; max-height : 15em;" src={{ product.path }} alt={{ product.title }}>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
