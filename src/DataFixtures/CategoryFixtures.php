@@ -36,10 +36,10 @@ class CategoryFixtures extends Fixture
                 'name' => 'moteur'
             ],
             [
-                'name' => 'food'
+                'name' => 'tuning'
             ],
             [
-                'name' => 'accessories'
+                'name' => 'accessoires'
             ]
         ];
     }
